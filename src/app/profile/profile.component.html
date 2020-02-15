@@ -1,0 +1,29 @@
+<div class="page-wrap col-sm-12 col-md-12">
+  <div class=" col-sm-12 col-md-2">
+    <div class="img-box">
+      <img [src]="currentUser.imageUrl" width="150" height="150" *ngIf="currentUser.imageUrl">
+      <label class="file-upload-label" *ngIf="!currentUser.imageUrl">No Image</label>
+    </div>
+    <div class="edit-btn-wrap">
+      <input type="file"
+             id="file"
+             class="inputfile"
+             (change)="handleFileInput($event.target.files)" accept="image/*">
+      <label for="file" class="edit-file-label blue-text">Edit image</label>
+      <div><a class="edit-file-label blue-text" routerLink="/editprofile/{{currentUser.id}}">Edit Profile</a></div>
+    </div>
+  </div>
+
+  <div class="form-wrap col-sm-12 col-md-10">
+    <p>
+      I am <span class="blue-text">{{currentUser.firstName}} {{currentUser.lastName}}</span> and i am <span class="blue-text">{{currentUser.age}}</span> and you can send
+      your email to <span class="blue-text">{{currentUser.email}}</span>  . I live
+      in the <span class="blue-text">{{currentUser.state.name}}</span> the state of <span class="blue-text">{{currentUser.country.name}}</span> . i love <span class="blue-text">{{currentUser.interest}}</span>
+      Please reach out me <span class="blue-text">{{currentUser.phoneNumber}}</span>
+    </p>
+  </div>
+
+
+
+</div>
+

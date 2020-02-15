@@ -1,0 +1,128 @@
+<div class="page-wrap col-sm-12 col-md-12">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="reg-fom">
+  <div class="image-wrap col-sm-12 col-md-2">
+    <div class="img-box">
+      <input type="file"
+             id="file"
+             class="inputfile"
+             (change)="handleFileInput($event.target.files)" accept="image/*">
+      <img [src]="imageUrl" width="150" height="150" *ngIf="imageUrl">
+      <label class="file-upload-label" for="file" [ngStyle]="{'color':imageUrl?'transparent':'#fff'}">Upload your photo</label>
+    </div>
+
+  </div>
+  <div class="form-wrap col-sm-12 col-md-10">
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="firstName" placeholder="First name" [ngClass]="{'invalid':submitted && ((f.firstName.errors && f.firstName.errors.required)||f.firstName.errors && f.firstName.errors.maxlength)}">
+          <div *ngIf="f.firstName.errors && f.firstName.errors.maxlength" style="color: red">Max length is 20</div>
+        </div>
+
+      </div>
+      <div style="color: red" *ngIf="submitted && (f.firstName.errors&&f.firstName.errors.maxLength)">maximum length is 20</div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="lastName" placeholder="Last name" [ngClass]="{'invalid':submitted && ((f.lastName.errors && f.lastName.errors.required)||(f.lastName.errors && f.lastName.errors.maxlength))}">
+          <div *ngIf="f.lastName.errors && f.lastName.errors.maxlength" style="color: red">Max length is 20</div>
+        </div>
+      </div>
+      <div style="color: red" *ngIf="submitted && (f.lastName.errors&& f.lastName.errors.maxLength)">maximum length is 20</div>
+      <div class="form-group row">
+        <label  class="col-sm-2 col-form-label">Age</label>
+        <div class="col-sm-10 d-flex">
+
+         <div class="col-md-7">
+           <ngx-input-range label="Age" formControlName="age"></ngx-input-range>
+         </div>
+          <div class="col-md-3">
+            <span> {{age}}</span>
+          </div>
+
+          <!--<input type="range" list="tickmarks" formControlName="age" [ngClass]="{'invalid':submitted && (f.age.errors && f.age.errors.required)}" class="range-select" >-->
+          <!--<span>{{f.age.value}}</span>-->
+          <!--<datalist id="tickmarks">-->
+            <!--<option value="10" label="13-19"></option>-->
+            <!--<option value="50" label="20-29"></option>-->
+            <!--<option value="100" label="30-45"></option>-->
+            <!--<option value="150" label="45 above"></option>-->
+          <!--</datalist>-->
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" formControlName="email" placeholder="Email" [ngClass]="{'invalid':submitted && ((f.email.errors && f.email.errors.required))||(f.email.errors && f.email.errors.email)}">
+          <div *ngIf="f.email.errors && f.email.errors.email" style="color: red">In valid email</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Phone number</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Phone number" [ngClass]="{'invalid':submitted && (f.phoneNumber.errors && f.phoneNumber.errors.required)}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Country</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="selectedCountry"  formControlName="country" (change)="onCountrySelect()" [ngClass]="{'invalid':submitted && (f.country.errors && f.country.errors.required)
+          ||(submitted && invalidCountry)}" (change)="invalidCountry=false">
+            <option hidden="hidden"  [ngValue]="'Please select country'">Please Select Country</option>
+            <option let *ngFor="let country of countryList" [ngValue]="country">{{country.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="selectedState" formControlName="state" [ngClass]="{'invalid':submitted && (f.state.errors && f.state.errors.required)
+          ||(submitted && invalidState)}" (change)="invalidState=false">
+            <option hidden="hidden" [ngValue]="'Please select state'">Please Select State</option>
+            <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+          <select class="form-control" formControlName="addressType" [ngClass]="{'invalid':submitted && (f.addressType.errors && f.addressType.errors.required)}">
+            <option hidden="hidden" [ngValue]="null">Please select</option>
+            <option  [ngValue]="'Home'">Home</option>
+            <option [ngValue]="'Company'">Company</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row" *ngIf="f.addressType.value!=null">
+        <label class="col-sm-2 col-form-label">{{f.addressType.value==='Home'? 'Address1': 'Company address1'}}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="address1" placeholder="Address1" [ngClass]="{'invalid':submitted && (f.address1.errors && f.address1.errors.required)}">
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="f.addressType.value!=null">
+        <label class="col-sm-2 col-form-label">{{f.addressType.value ==='Home'? 'Address2': 'Company address2'}}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="address2" placeholder="Address2" [ngClass]="{'invalid':submitted && (f.address2.errors && f.address2.errors.required)}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Interest</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="interest" placeholder="interest" [ngClass]="{'invalid':submitted && (f.interest.errors && f.interest.errors.required)}">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </div>
+
+  </div>
+  </form>
+</div>
+

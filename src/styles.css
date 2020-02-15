@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+.reg-btn-wrap {
+  width:500px;
+  height:500px;
+  margin:0 auto;
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin-left:-250px;
+  margin-top:-250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reg-btn{
+  width: 250px;
+  padding: 10px;
+}
+.page-wrap{
+  display: flex;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+.image-wrap{
+  display: flex;
+  justify-content: center;
+ flex-wrap: wrap;
+}
+.form-wrap{
+  border-left: solid 2px #ccc ;
+}
+.form-wrap {
+  padding: 20px;
+}
+.reg-fom{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.img-box{
+  width: 150px;
+  height: 150px;
+  background-color: #4287a0;
+  float: right;
+}
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.file-upload-label{
+  position: absolute;
+  top: 53px;
+  left: 47px;
+  color: #fff;
+  text-decoration: underline;
+  width: 85px;
+  text-align: center;
+}
+.blue-text{
+  color: #66b5ef;
+}
+.edit-btn-wrap{
+  text-align: center;
+}
+.edit-file-label{
+  margin-top: 15px;
+  text-decoration: underline;
+}
+.form-control.invalid:focus,.form-control.invalid{
+  border:solid 1px #dc3545;
+  box-shadow: none;
+}
+.range-select{
+  width: 88%;
+}
+.ngx-input-range__top-label{
+ display: none;
+}
+.ngx-input-range__input{
+  width: 380px!important;
+}
+ngx-input-range {
+
+  --color-range-lower-fill: #17a2b8!important;
+  --color-range-thumb: #17a2b8!important;
+}
