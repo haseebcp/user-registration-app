@@ -10,11 +10,15 @@ export class ProfileComponent implements OnInit {
   userProfile;
   currentUser;
   userId;
+  interest;
   constructor() { }
 
   ngOnInit() {
     this.userProfile = JSON.parse(localStorage.getItem("userProfile"));
     this.currentUser = this.userProfile;
+    this.interest = this.currentUser.interest.map(item => {
+      return item.display;
+    }).join(",");
   }
   handleFileInput(file){
     const reader = new FileReader();
@@ -27,7 +31,5 @@ export class ProfileComponent implements OnInit {
       localStorage.removeItem('userProfile');
       localStorage.setItem('userProfile',JSON.stringify(this.userProfile));
     };
-
-
   }
 }

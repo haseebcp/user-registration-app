@@ -112,7 +112,8 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Interest</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="interest" placeholder="interest" [ngClass]="{'invalid':submitted && (f.interest.errors && f.interest.errors.required)}">
+          <tag-input formControlName="interest" theme='bootstrap' [separatorKeyCodes]="[32]" [separatorKeys]="[',']"></tag-input>
+          <!--<input type="text" class="form-control" formControlName="interest" placeholder="interest" [ngClass]="{'invalid':submitted && (f.interest.errors && f.interest.errors.required)}">-->
         </div>
       </div>
 

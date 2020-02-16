@@ -9,6 +9,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { ProfileComponent } from './profile/profile.component';
 import {NgxInputRangeModule} from "@ngx-lite/input-range";
+import {TagInputModule} from "ngx-chips";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import {NgxInputRangeModule} from "@ngx-lite/input-range";
     ProfileComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TagInputModule,
     NgxInputRangeModule
   ],
   providers: [],

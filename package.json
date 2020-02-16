@@ -22,6 +22,7 @@
     "@ngx-lite/input-range": "^0.3.3",
     "bootstrap": "^4.4.1",
     "country-state-city": "^1.0.4",
+    "ngx-chips": "^2.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

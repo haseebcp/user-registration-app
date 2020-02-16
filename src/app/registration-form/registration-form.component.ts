@@ -27,7 +27,7 @@ export class RegistrationFormComponent implements OnInit {
     this.registrationForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(20)]],
-      age: [0, Validators.required],
+      age: [10, Validators.required],
       email: ['', [Validators.required ,Validators.email]],
       phoneNumber: ['', Validators.required],
       state: ['', Validators.required],
@@ -67,7 +67,6 @@ export class RegistrationFormComponent implements OnInit {
      }
 
     if (localStorage.getItem("userProfile")){
-       console.log(this.userData['age'])
        this.f['firstName'].setValue( this.userData['firstName']);
        this.f['lastName'].setValue( this.userData['lastName']);
        this.f['age'].setValue( this.userData['age']);
@@ -118,6 +117,7 @@ export class RegistrationFormComponent implements OnInit {
     if (this.registrationForm.invalid ||this.invalidCountry || this.invalidState) {
       return;
     }
+    console.log(this.userData)
     localStorage.removeItem("userProfile");
     localStorage.setItem('userProfile', JSON.stringify(this.userData))
     this.router.navigate(['profile']);
